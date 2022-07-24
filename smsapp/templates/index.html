@@ -1,0 +1,6 @@
+<h1>OTP Registration</h1>
+
+<form name="submitt" method="post" action="{% url 'submit' %}">
+    {% csrf_token %} 
+    <input type="submit" value="Create a new Station" />
+</form>
