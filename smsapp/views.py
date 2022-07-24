@@ -43,3 +43,29 @@ def textlocal(request):
     f = urllib.request.urlopen(url=requestt, data=data,context=ctx,)
     fr = f.read()
     print(fr)
+    
+def sendemail(request):
+    import smtplib, ssl, math, random
+
+    port = 465  # For SSL
+    password = 'ifkmqgdgnvpbmrgl'
+
+    # Create a secure SSL context
+    ctx = ssl.create_default_context()
+    ctx.check_hostname = False
+    ctx.verify_mode = ssl.CERT_NONE
+    with smtplib.SMTP_SSL("smtp.gmail.com", port, context=ctx) as server:
+        server.login("testemail77778@gmail.com", password)
+        # TODO: Send email here
+        receiver_email = request.POST.get('textfield', None)
+        digits = "0123456789"
+        OTP = ""
+ 
+        # length of password can be changed
+        # by changing value in range
+        for i in range(4) :
+            OTP += digits[math.floor(random.random() * 10)]
+        TEXT = 'Your OTP is '+OTP
+        message = 'Subject: {}\n\n{}'.format("Nam's OTP System sent you an OTP", TEXT)
+        server.sendmail("testemail77778@gmail.com", receiver_email, message)
+    return HttpResponse("E-mail sent!")

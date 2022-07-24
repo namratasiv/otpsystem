@@ -1,6 +1,11 @@
-<h1>OTP Registration</h1>
+<h1>Nam's OTP System</h1>
 
-<form name="submitt" method="post" action="{% url 'submit' %}">
+
+
+<form name="submitt" method="post" action="{% url 'sendemail' %}">
     {% csrf_token %} 
-    <input type="submit" value="Create a new Station" />
+    <label>Enter your email</label>
+    <input type="text" name="textfield"> </br> </br>
+    <input type="submit" value="Send OTP through Email" />
+    
 </form>

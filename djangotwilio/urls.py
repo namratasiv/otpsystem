@@ -19,5 +19,5 @@ import smsapp
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('smsapp/', include('smsapp.urls')),
+    path('', include('smsapp.urls')),
 ]
