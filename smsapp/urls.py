@@ -8,4 +8,5 @@ urlpatterns = [
     path('home/',views.home,name='home'),
     path('submit/',views.twilio,name='submit'),
     path('email/',views.sendemail,name='sendemail'),
+    path('verify/',views.otpverify,name='otpverify'),
 ]

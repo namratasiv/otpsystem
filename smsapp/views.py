@@ -59,13 +59,22 @@ def sendemail(request):
         # TODO: Send email here
         receiver_email = request.POST.get('textfield', None)
         digits = "0123456789"
-        OTP = ""
+        
  
         # length of password can be changed
         # by changing value in range
+        OTP = ""
         for i in range(4) :
             OTP += digits[math.floor(random.random() * 10)]
+        request.session["OTP"] = OTP
         TEXT = 'Your OTP is '+OTP
         message = 'Subject: {}\n\n{}'.format("Nam's OTP System sent you an OTP", TEXT)
         server.sendmail("testemail77778@gmail.com", receiver_email, message)
-    return HttpResponse("E-mail sent!")
+    return render(request,'twilio.html')
+
+def otpverify(request):
+    input_otp = request.POST.get('otp', None)
+    if request.session["OTP"] == input_otp:
+        return HttpResponse("<h4 style='color:green;'>You passed!</h4>")
+    else:
+        return HttpResponse("<h4 style='color:red;'>You did not pass!</h4>")

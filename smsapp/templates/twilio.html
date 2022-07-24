@@ -1,2 +1,7 @@
-<h1>handle twilio</h1>
-<h3> {{error}} </h3>
+<form name="submitt" method="post" action="{% url 'otpverify' %}">
+    {% csrf_token %} 
+    <label>Enter your OTP</label>
+    <input type="text" name="otp"> </br> </br>
+    <input type="submit" value="Verify" />
+    
+</form>
